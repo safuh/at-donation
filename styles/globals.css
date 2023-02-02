@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+ 
+
+.card {
+  @apply mb-5  block   rounded-lg border border-gray-200  shadow-md;
+}
+
+.primary-button {
+  @apply rounded bg-indigo-700 py-2 px-4 shadow outline-none hover:bg-indigo-800  active:bg-indigo-900 text-white uppercase font-bold;
+}
+
+input,
+select,
+textarea {
+  @apply rounded border p-2  outline-none ring-indigo-300  focus:ring;
+}
