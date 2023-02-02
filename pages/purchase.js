@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useForm, Controller } from "react-hook-form";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 import Layout from '../components/Layout';
 
 export default function LoginScreen() {
@@ -21,9 +22,9 @@ export default function LoginScreen() {
         className="mx-auto max-w-screen-md"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className="mb-4 text-xl">Login</h1>
+        <h1 className="mb-4 text-xl">Purchase</h1>
         <div className="mb-4">
-         <label htmlFor="phone-input">Phone Number</label>
+         <label htmlFor="phone-input">Enter Phone Number</label>
          <Controller
           name="phone-input"
           control={control}
@@ -44,27 +45,23 @@ export default function LoginScreen() {
         )}
         </div>
         <div className="mb-4">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="number">Enter Airtime Amount</label>
           <input
-            type="password"
-            {...register('password', {
-              required: 'Please enter password',
-              minLength: { value: 6, message: 'password is more than 5 characters' },
+            type="number"
+            {...register('number', {
+              required: 'Please enter airtime amount to purchase',
+              minLength: { value: 2, message: 'amount is more than 10/-' },
             })}
             className="w-full"
-            id="password"
+            id="number"
             autoFocus
           ></input>
-          {errors.password && (
-            <div className="text-red-500 ">{errors.password.message}</div>
+          {errors.number && (
+            <div className="text-red-500 ">{errors.number.message}</div>
           )}
         </div>
         <div className="mb-4 ">
-          <button className="primary-button">Login</button>
-        </div>
-        <div className="mb-4 ">
-          Don&apos;t have an account? &nbsp;
-          <Link href="register">Register</Link>
+          <button className="primary-button">Purchase</button>
         </div>
       </form>
     </Layout>
