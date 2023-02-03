@@ -12,7 +12,7 @@ export default function Layout({ title, children }) {
       </Head>
 
       <div className="flex min-h-screen flex-col justify-between">
-        <header >
+        <header>
           <nav
             className="flex h-12 items-center px-4 justify-between shadow-md"
           >
@@ -26,7 +26,7 @@ export default function Layout({ title, children }) {
             </div>
           </nav>
         </header>
-        <main className="container m-auto mt-4 px-4">{children}</main>
+        <main  className="container m-auto mt-4 px-4">{children}</main>
         <footer className="flex h-10 justify-center items-center shadow-inner ">
           <p>Copywright @2023 by Tech Wizards</p>
         </footer>
