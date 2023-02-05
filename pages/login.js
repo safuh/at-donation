@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm, Controller } from "react-hook-form";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import Layout from '../components/Layout';
+import 'react-phone-number-input/style.css'
 
 export default function LoginScreen() {
   const {
