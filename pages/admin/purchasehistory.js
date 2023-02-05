@@ -1,7 +1,9 @@
 import Layout from '@/components/Layout'
 import React from 'react'
+import data from '../../utils/data';
+import PurchaseRecords from '@/components/admin/purchaserecords';
 
-export default function PurchaseHistory() {
+export default function PurchaseHistory({ records }) {
     return (
         <Layout>
             <div className="overflow-y-auto flex justify-center" >
@@ -9,21 +11,17 @@ export default function PurchaseHistory() {
 
                     <thead className="border-b">
                         <tr>
-                            <th className="px-5 text-left">ID</th>
                             <th className="p-5 text-left">AIRTIME</th>
                             <th className="p-5 text-left">PHONE NUMBER</th>
-                            <th className="p-5 text-left">AIRTIME</th>
+                            <th className="p-5 text-left">CREDIT BOUGHT</th>
                             <th className="p-5 text-left">AMOUNT SAVED</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className='border-b'>
-                            <td className='p-5'>id</td>
-                            <td className='p-5'>airtime</td>
-                            <td className='p-5'>phonenumber</td>
-                            <td className='p-5'>airtime</td>
-                            <td className='p-5'>amount saved</td>     
-                        </tr>
+                        
+                            {data.purchases.map((record) => (
+                                <PurchaseRecords key={record.id} record={record}/>
+                            ))}
                     </tbody>
                 </table>
             </div>
