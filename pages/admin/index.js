@@ -2,9 +2,10 @@ import Layout from '@/components/Layout';
 import React from 'react';
 import Image from 'next/image';
 
+
 export default function AdminSection() {
     return (
-        <Layout>
+        <Layout title="Admin-Section">
             <div className='mb-3'>
                 <div className='font-black uppercase text-xl mb-1'>
                     Admin Section
