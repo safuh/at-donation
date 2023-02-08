@@ -1,11 +1,33 @@
+import bcrypt from 'bcryptjs';
+
+
 const data = {
+    users: [
+        {
+            name: 'apeli',
+            phonenumber: '+254706757828',
+            password: bcrypt.hashSync('123456'),
+            isAdmin: true,
+        },
+        {
+            name: 'harry',
+            phonenumber: '+254720667402',
+            password: bcrypt.hashSync('123456'),
+            isAdmin: true,
+        },
+        {
+            name: 'faith',
+            phonenumber: '+254701234567',
+            password: bcrypt.hashSync('123456'),
+            isAdmin: false,
+        }
+    ],
     purchases: [
         {
             id: 1,
             date : '15/01/2023',
-            name: 'apeli',
             airtime: '150',
-            phonenumber: '0706757828',
+            phonenumber: '+254701234567',
             credit: '140',
             amountsaved: '10',
             image: '/images/slide2.jpeg',
@@ -14,9 +36,8 @@ const data = {
         {
             id: 2,
             date: '30/01/2023',
-            name: 'harry',
             airtime: '280',
-            phonenumber: '0720667402',
+            phonenumber:'+254720667402',
             amountsaved: '20',
             image: '/images/slide1.png',
             isFeatured: true,
@@ -24,9 +45,8 @@ const data = {
         {
             id: 3,
             date: '05/02/2023',
-            name: 'faith',
             airtime: '420',
-            phonenumber: '0701234567',
+            phonenumber: '+254701234567',
             amountsaved: '30',
             image: '/images/slide3.png',
             isFeatured: true,
