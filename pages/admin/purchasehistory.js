@@ -11,10 +11,10 @@ export default function PurchaseHistory({ records }) {
 
                     <thead className="border-b">
                         <tr>
-                            <th className="p-5 text-left">AIRTIME</th>
+                            <th className="p-5 text-left">DATE</th>
                             <th className="p-5 text-left">PHONE NUMBER</th>
-                            <th className="p-5 text-left">CREDIT BOUGHT</th>
-                            <th className="p-5 text-left">AMOUNT SAVED</th>
+                            <th className="p-5 text-left">AIRTIME</th>
+                            <th className="p-5 text-left">AMOUNT DONATED</th>
                         </tr>
                     </thead>
                     <tbody>
