@@ -1,13 +1,20 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import React from 'react';
-import { useSession } from 'next-auth/react';
+import React, { forwardRef } from 'react';
+import { signOut, useSession } from 'next-auth/react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
+import { Menu } from '@headlessui/react';
+import DropdownLink from './DropdownLink';
 
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
+
+  const logoutClickhandler = () => {
+    signOut({callbackUrl: '/login'})
+  }
   return (
     <>
       <Head>
@@ -29,7 +36,36 @@ export default function Layout({ title, children }) {
               {status === 'loading' ? (
                 'Loading'
               ) : session?.user ? (
-                session.user.name
+                <Menu as="div" className="relative inline-block">
+                  <Menu.Button className="text-blue-600">
+                    {session.user.name}
+                  </Menu.Button>
+                  <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white shadow-lg ">
+                    {session.user.isAdmin && (
+                      <>
+                        <Menu.Item>
+                          <DropdownLink className="dropdown-link" href="/admin">
+                            Profile
+                          </DropdownLink>
+                        </Menu.Item>
+                        <Menu.Item>
+                          <DropdownLink className="dropdown-link" href="/admin/purchasehistory">
+                            Purchase History
+                          </DropdownLink>
+                        </Menu.Item>
+                      </>
+                    )}
+                    <Menu.Item>
+                      <a
+                        className='dropdown-link'
+                        href="#"
+                        onClick={logoutClickhandler}
+                      >
+                        Logout
+                      </a>
+                    </Menu.Item>
+                  </Menu.Items>
+                </Menu>
               ) : (
                 <Link href="/login" legacyBehavior>
                   <a className="p-2">Login</a>
