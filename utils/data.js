@@ -5,18 +5,21 @@ const data = {
     users: [
         {
             name: 'apeli',
+            email: 'apeli@gmail.com',
             phonenumber: '+254706757828',
             password: bcrypt.hashSync('123456'),
             isAdmin: true,
         },
         {
             name: 'harry',
+            email: 'harrysafu@gmail.com',
             phonenumber: '+254720667402',
             password: bcrypt.hashSync('123456'),
             isAdmin: true,
         },
         {
             name: 'faith',
+            email: 'feiwewe@gmail.com',
             phonenumber: '+254701234567',
             password: bcrypt.hashSync('123456'),
             isAdmin: false,

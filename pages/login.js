@@ -1,12 +1,25 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import Layout from '../components/Layout';
 import 'react-phone-number-input/style.css'
+import { signIn, useSession } from 'next-auth/react';
+import { toast } from 'react-toastify';
+import { getError } from '@/utils/error';
+import { useRouter } from 'next/router';
 
 export default function LoginScreen() {
-  const [value, setValue] = useState();
-  var reg = new RegExp('^((01) | (07))[0-9]{8}$', 'i');
+  const {data: session } = useSession();
+
+  const router = useRouter();
+  const {redirect} = router.query;
+
+  useEffect(() => {
+    if(session?.user) {
+      router.push(redirect || '/');
+    }
+  }, [router, session, redirect]);
+
 
   const {
     register,
@@ -21,8 +34,21 @@ export default function LoginScreen() {
     mode: "onBlur"
   });
 
-  const onSubmit = (data) => {
-    console.log(data.phone)
+  const onSubmit = async (data) => {
+    const phoneNumber = data.phone;
+    const passcode = data.password;
+    try {
+      const result = await signIn('credentials', {
+        redirect: false,
+        phoneNumber,
+        passcode,
+      });
+      if (result.error) {
+        toast.error(result.error)
+      }
+    } catch (error) {
+      toast.error(getError(err))
+    }
   }
 
   return (

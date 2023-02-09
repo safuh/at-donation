@@ -1,3 +1,4 @@
+
 import bcryptjs from 'bcryptjs';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -15,7 +16,9 @@ export default NextAuth({
       return token;
     },
     async session({ session, token }) {
-      if (token?._id) session.user._id = token._id;
+      if (token?._id) {
+        session.user._id = token._id
+      };
       if (token?.isAdmin) session.user.isAdmin = token.isAdmin;
       return session;
     },
@@ -25,16 +28,16 @@ export default NextAuth({
       async authorize(credentials) {
         await db.connect();
         const user = await User.findOne({
-          phonenumber: credentials.phonenumber,
+          phonenumber: credentials.phoneNumber,
         });
         await db.disconnect();
-        if (user && bcryptjs.compareSync(credentials.password, user.password)) {
+        if (user && bcryptjs.compareSync(credentials.passcode, user.password)) {
           return {
             _id: user._id,
             name: user.name,
+            email: user.email,
             phonenumber: user.phonenumber,
-            // image: 'f',
-             isAdmin: user.isAdmin,
+            isAdmin: user.isAdmin,
           };
         }
         throw new Error('Invalid phonenumber or password');
@@ -42,3 +45,6 @@ export default NextAuth({
     }),
   ],
 });
+
+
+
