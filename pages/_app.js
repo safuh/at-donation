@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
-      <StoreProvider>
+      {/* <StoreProvider>
           {Component.auth ? (
             <Auth adminOnly={Component.auth.adminOnly}>
               <Component {...pageProps} />
@@ -14,7 +14,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           ) : (
             <Component {...pageProps} />
           )}
-      </StoreProvider>
+      </StoreProvider> */}
+      <Component {...pageProps} />
     </SessionProvider>
   );
 }

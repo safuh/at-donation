@@ -1,63 +1,73 @@
 import Link from 'next/link';
-import React from 'react';
-import { useForm, Controller } from "react-hook-form";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
 import Layout from '../components/Layout';
 import 'react-phone-number-input/style.css'
 
 export default function LoginScreen() {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    control
-  } = useForm();
+  const [value, setValue] = useState();
+  var reg = new RegExp('^((01) | (07))[0-9]{8}$', 'i');
 
-  const submitHandler = ({email, password }) => {
-    console.log( email, password);
-  };
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors }
+  } = useForm({
+    defaultValues: {
+      phone: "",
+      password: "",
+    },
+    mode: "onBlur"
+  });
+
+  const onSubmit = (data) => {
+    console.log(data.phone)
+  }
+
   return (
     <Layout title="Login">
       <form
-        className="mx-auto max-w-screen-md"
-        onSubmit={handleSubmit(submitHandler)}
+        className='mx-auto max-w-screen-md'
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="mb-4 text-xl">Login</h1>
-        <div className="mb-4">
-         <label htmlFor="phone-input">Phone Number</label>
-         <Controller
-          name="phone-input"
-          control={control}
-          rules={{
-            validate: (value) => isValidPhoneNumber(value)
-          }}
-          render={({ field: { onChange, value } }) => (
-            <PhoneInput
-              value={value}
-              onChange={onChange}
-              defaultCountry="KE"
-              id="phone-input"
-            />
-          )}
-        />
-        {errors["phone-input"] && (
-          <p className="error-message">Invalid Phone Number</p>
-        )}
-        </div>
-        <div className="mb-4">
-          <label htmlFor="password">Password</label>
+        <h1 className='mb-4 text-xl uppercase font-black'>Login</h1>
+        <div className='mb-4'>
+          <label htmlFor='phone'>Phone Number</label>
           <input
-            type="password"
-            {...register('password', {
-              required: 'Please enter password',
-              minLength: { value: 6, message: 'password is more than 5 characters' },
+            type="tel"
+            {...register("phone", {
+              required: true,
+              pattern: {
+                value: /^\+254\d{9}$/,
+                message: "Please enter a valid Kenyan phone number starting with +254"
+              }
             })}
             className="w-full"
-            id="password"
+            id="phone"
             autoFocus
-          ></input>
+          />
+          {errors.phone && (
+            <div className="text-red-500 ">{errors.phone.message}</div>
+          )}
+        </div>
+        <div className='mb-4'>
+          <label htmlFor="password">Password</label>
+          <input
+            //  type="password" 
+            {...register('password', {
+              required: 'Please enter password',
+              minLength: {
+                value: 6,
+                message: 'password is more than 5 characters',
+              },
+            })}
+            className='w-full'
+            id='password'
+            autoFocus
+          />
           {errors.password && (
-            <div className="text-red-500 ">{errors.password.message}</div>
+            <div className="text-red-500">{errors.password.message}</div>
           )}
         </div>
         <div className="mb-4 ">
