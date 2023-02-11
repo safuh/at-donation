@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
   const { data: session } = useSession();
 
   const router = useRouter();
@@ -26,19 +26,22 @@ export default function LoginScreen() {
     getValues,
     formState: { errors },
   } = useForm();
-  const submitHandler = async ({ name, email, password }) => {
+  const submitHandler = async ({ name, phonenumber, password }) => {
+    console.log(name, phonenumber, password)
     try {
       await axios.post('/api/auth/signup', {
         name,
-        email,
+        phonenumber,
         password,
       });
 
       const result = await signIn('credentials', {
         redirect: false,
-        email,
+        name,
+        phonenumber,
         password,
       });
+      console.log('result :>> ', result);
       if (result.error) {
         toast.error(result.error);
       }
@@ -68,23 +71,23 @@ export default function LoginScreen() {
             <div className="text-red-500">{errors.name.message}</div>
           )}
         </div>
-
-        <div className="mb-4">
-          <label htmlFor="email">Email</label>
+        <div className='mb-4'>
+          <label htmlFor='phonenumber'>Phone Number</label>
           <input
-            type="email"
-            {...register('email', {
-              required: 'Please enter email',
+            type="tel"
+            {...register("phonenumber", {
+              required: true,
               pattern: {
-                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                message: 'Please enter valid email',
-              },
+                value: /^\+254\d{9}$/,
+                message: "Please enter a valid Kenyan phonenumber number starting with +254"
+              }
             })}
             className="w-full"
-            id="email"
-          ></input>
-          {errors.email && (
-            <div className="text-red-500">{errors.email.message}</div>
+            id="phonenumber"
+            autoFocus
+          />
+          {errors.phonenumber && (
+            <div className="text-red-500 ">{errors.phonenumber.message}</div>
           )}
         </div>
         <div className="mb-4">
@@ -131,10 +134,6 @@ export default function LoginScreen() {
 
         <div className="mb-4 ">
           <button className="primary-button">Register</button>
-        </div>
-        <div className="mb-4 ">
-          Don&apos;t have an account? &nbsp;
-          <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
         </div>
       </form>
     </Layout>

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Layout from '../components/Layout';
 import 'react-phone-number-input/style.css'
 
-export default function LoginScreen() {
+export default function PurchaseScreen() {
 
   const {
     register,
@@ -24,7 +24,7 @@ export default function LoginScreen() {
   }
 
   return (
-    <Layout title="Login">
+    <Layout title="Purchase">
       <form
         className='mx-auto max-w-screen-md'
         onSubmit={handleSubmit(onSubmit)}
@@ -69,12 +69,8 @@ export default function LoginScreen() {
           )}
         </div>
         <div className="mb-4 ">
-          <button className="primary-button">Login</button>
-        </div>
-        <div className="mb-4 ">
-          Don&apos;t have an account? &nbsp;
-          <Link href="register">Register</Link>
-        </div>
+          <button className="primary-button">Purchase</button>
+        </div >
       </form>
     </Layout>
   );

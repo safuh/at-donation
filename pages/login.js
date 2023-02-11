@@ -35,13 +35,13 @@ export default function LoginScreen() {
   });
 
   const onSubmit = async (data) => {
-    const phoneNumber = data.phone;
-    const passcode = data.password;
+    const phonenumber = data.phone;
+    const password = data.password;
     try {
       const result = await signIn('credentials', {
         redirect: false,
-        phoneNumber,
-        passcode,
+        phonenumber,
+        password,
       });
       if (result.error) {
         toast.error(result.error)
@@ -77,23 +77,20 @@ export default function LoginScreen() {
             <div className="text-red-500 ">{errors.phone.message}</div>
           )}
         </div>
-        <div className='mb-4'>
+        <div className="mb-4">
           <label htmlFor="password">Password</label>
           <input
-            //  type="password" 
+            type="password"
             {...register('password', {
               required: 'Please enter password',
-              minLength: {
-                value: 6,
-                message: 'password is more than 5 characters',
-              },
+              minLength: { value: 6, message: 'password is more than 5 chars' },
             })}
-            className='w-full'
-            id='password'
+            className="w-full"
+            id="password"
             autoFocus
-          />
+          ></input>
           {errors.password && (
-            <div className="text-red-500">{errors.password.message}</div>
+            <div className="text-red-500 ">{errors.password.message}</div>
           )}
         </div>
         <div className="mb-4 ">
@@ -101,7 +98,7 @@ export default function LoginScreen() {
         </div>
         <div className="mb-4 ">
           Don&apos;t have an account? &nbsp;
-          <Link href="register">Register</Link>
+          <Link href={`/register?redirect=${redirect || '/'}`} className='text-sky-400/100' legacyBehavior>Register</Link>
         </div>
       </form>
     </Layout>

@@ -38,7 +38,7 @@ export default function Home() {
         <h1 className='text-5xl '>Empower your fundraiser</h1><br />
         <h1 className='text-2xl'><span ref={textRef} /></h1>
         <button
-        onClick={() => router.push('/admin/createcourse')}
+        onClick={() => router.push('login?redirect=/admin/createcourse')}
           className="animate-wavey bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-80 mt-5 mb-5"
         >
           Start Fundraiser course
