@@ -9,7 +9,6 @@ export default function PurchaseScreen() {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors }
   } = useForm({
     defaultValues: {
@@ -50,14 +49,14 @@ export default function PurchaseScreen() {
           )}
         </div>
         <div className='mb-4'>
-          <label htmlFor="amount">Airtime amount</label>
+          <label htmlFor="amount">Donation amount</label>
           <input
             //  type="number" 
             {...register('amount', {
               required: 'Please enter the amount you wish to purchase',
               minLength: {
                 value: 2,
-                message: 'the minimum airtime purchase limit is 10',
+                message: 'the minimum reccomended limit is 10/-',
               },
             })}
             className='w-full'
@@ -69,7 +68,7 @@ export default function PurchaseScreen() {
           )}
         </div>
         <div className="mb-4 ">
-          <button className="primary-button">Purchase</button>
+          <button className="primary-button">CONFIRM DONATION</button>
         </div >
       </form>
     </Layout>

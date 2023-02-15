@@ -13,7 +13,7 @@ export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
 
   const logoutClickhandler = () => {
-    signOut({callbackUrl: '/login'})
+    signOut({ callbackUrl: '/login' })
   }
   return (
     <>
@@ -41,20 +41,16 @@ export default function Layout({ title, children }) {
                     {session.user.name}
                   </Menu.Button>
                   <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white shadow-lg ">
-                    {session.user.isAdmin && (
-                      <>
-                        <Menu.Item>
-                          <DropdownLink className="dropdown-link" href="/admin">
-                            Profile
-                          </DropdownLink>
-                        </Menu.Item>
-                        <Menu.Item>
-                          <DropdownLink className="dropdown-link" href="/admin/purchasehistory">
-                            Purchase History
-                          </DropdownLink>
-                        </Menu.Item>
-                      </>
-                    )}
+                    <Menu.Item>
+                      <DropdownLink className="dropdown-link" href="/admin">
+                        Profile
+                      </DropdownLink>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <DropdownLink className="dropdown-link" href="/admin/purchase-history">
+                        Purchase History
+                      </DropdownLink>
+                    </Menu.Item>
                     <Menu.Item>
                       <a
                         className='dropdown-link'

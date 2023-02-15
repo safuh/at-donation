@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <Layout>
       <Carousel showThumbs={false} autoPlay swipeable infiniteLoop>
-        {data.purchases.map((record) => (
+        {data.users.map((record) => (
           <div key={record.id} className="flex">
             <Image width="1000" height="10" src={record.image} alt="slide" />
           </div>

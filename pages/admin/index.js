@@ -10,7 +10,7 @@ export default function AdminSection() {
                 <div className='font-black uppercase text-xl mb-1'>
                     Admin Section
                 </div>
-                <p className='underline'>Airtime Purchase Link:</p>
+                <p className='underline'>Donation Link:</p>
                 <span className='cursor-pointer text-teal-600'>https://link/qw456yu76</span>
             </div>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-0 lg:grid-cols-2 bg-black " >
