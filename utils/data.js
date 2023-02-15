@@ -8,7 +8,7 @@ const data = {
             phonenumber: '+254706757828',
             password: bcrypt.hashSync('123456'),
             isAdmin: true,
-            image: '/images/slide1.png',
+            banner: '/images/slide1.png',
             isFeatured: true,
         },
         {
@@ -16,7 +16,7 @@ const data = {
             phonenumber: '+254720667402',
             password: bcrypt.hashSync('123456'),
             isAdmin: true,
-            image: '/images/slide2.jpeg',
+            banner: '/images/slide2.jpeg',
             isFeatured: true,
         },
         {
@@ -24,7 +24,7 @@ const data = {
             phonenumber: '+254701234567',
             password: bcrypt.hashSync('123456'),
             isAdmin: false,
-            image: '/images/slide3.png',
+            banner: '/images/slide3.png',
             isFeatured: true,
         }
     ],
@@ -44,6 +44,12 @@ const data = {
             phonenumber: '+254701234567',
             donation: '300',
             airtime: '30',
+        }
+    ],
+
+    donation: [
+        {
+
         }
     ]
 }
