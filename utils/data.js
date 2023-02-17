@@ -49,8 +49,20 @@ const data = {
 
     donation: [
         {
-
-        }
+            donationtitle: 'Test Title',
+            targetamount: 10000,
+            description: 'Donation description example',
+        },
+        {
+            donationtitle: 'Another Title',
+            targetamount: 33000,
+            description: 'Donation description example',
+        },
+        {
+            donationtitle: 'Sample Title',
+            targetamount: 200000,
+            description: 'Donation description example',
+        },
     ]
 }
 

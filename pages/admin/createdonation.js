@@ -2,9 +2,10 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import Layout from '@/components/Layout';
+import axios from 'axios';
 
 export default function CreateDonationScreen() {
- 
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -18,8 +19,18 @@ export default function CreateDonationScreen() {
     mode: "onBlur"
   });
 
-  const onSubmit = ({title, target, description}) => {
-    console.log(title, target, description);
+  const onSubmit = ({ title, target, description }) => {
+    try {
+      setLoading(true);
+      const { data } = axios.post(`/api/donation/`, {
+        title,
+        target,
+        description,
+      });
+      setLoading(false);
+    } catch (error) {
+
+    }
   }
 
   return (

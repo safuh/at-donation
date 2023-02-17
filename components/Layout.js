@@ -47,8 +47,8 @@ export default function Layout({ title, children }) {
                       </DropdownLink>
                     </Menu.Item>
                     <Menu.Item>
-                      <DropdownLink className="dropdown-link" href="/admin/purchase-history">
-                        Purchase History
+                      <DropdownLink className="dropdown-link" href="/donations">
+                        Your Donation(s) List 
                       </DropdownLink>
                     </Menu.Item>
                     <Menu.Item>

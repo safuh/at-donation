@@ -29,7 +29,7 @@ export default function Home() {
     <Layout>
       <Carousel showThumbs={false} autoPlay swipeable infiniteLoop>
         {data.users.map((record) => (
-          <div key={record.id} className="flex">
+          <div key={record.name} className="flex">
             <Image width="1000" height="10" src={record.banner} alt="slide" />
           </div>
         ))}
